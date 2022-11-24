@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1669324335 source:e:\projeto\project\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"dados.c"
+
+1669324360 e:\projeto\project\dados.c
+	<stdio.h>
+	<stdlib.h>
+
