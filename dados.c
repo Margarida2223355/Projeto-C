@@ -10,12 +10,13 @@
 
 
 typedef struct {
-    int id_part, escola, nif, telefone;
-    char nome[MAX_CARACT], email[MAX_CARACT];
+    int id_part;
+    long nif, telefone;
+    char nome[MAX_CARACT], email[MAX_CARACT], escola[5];
 } t_participante;
 
 typedef struct {
-    int id_ativ, atividade, associacao;
+    int id_ativ, tipo_atividade, associacao;
     char designacao[MAX_CARACT], data[MAX_DATA], hora[MAX_HORA], local[MAX_CARACT];
     float valor_ins;
 } Atividade;
@@ -26,7 +27,11 @@ typedef struct {
     char data[MAX_DATA], hora[MAX_HORA];
 } Inscricao;
 
-t_participante participante[MAX_P]={};
+typedef struct {
+    int dia, mes, ano;
+} Data;
+
+t_participante participante[MAX_P];
 Atividade atividade[MAX_A];
 Inscricao inscricao[MAX_I];
 

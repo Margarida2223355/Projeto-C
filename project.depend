@@ -9,3 +9,31 @@
 	<stdio.h>
 	<stdlib.h>
 
+1670864659 source:c:\users\gabri\onedrive\documentos\github\projeto-c\menu.c
+	<stdio.h>
+	<stdlib.h>
+	"menu.h"
+	"funcoes.c"
+
+1670862273 source:c:\users\gabri\onedrive\documentos\github\projeto-c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+	"dados.c"
+	"menu.h"
+
+1670865084 c:\users\gabri\onedrive\documentos\github\projeto-c\dados.c
+	<stdio.h>
+	<stdlib.h>
+
+1670791053 c:\users\gabri\onedrive\documentos\github\projeto-c\menu.c
+	<stdio.h>
+	<stdlib.h>
+
+1670792254 c:\users\gabri\onedrive\documentos\github\projeto-c\menu.h
+
+1670864881 c:\users\gabri\onedrive\documentos\github\projeto-c\funcoes.c
+	<stdio.h>
+	<stdlib.h>
+	"dados.c"
+
