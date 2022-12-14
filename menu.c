@@ -4,7 +4,9 @@
 #include "funcoes.c"
 
 int ultimo_participante = 0;
+int ultima_atividade = 0;
 int menu_principal(){
+    limpar_console();
     int resposta;
 
     printf("\n*****Menu principal*****\n");
@@ -12,6 +14,7 @@ int menu_principal(){
     printf("2-Consultar\n");
     printf("3-Estatisticas\n");
     printf("0-Sair\n");
+    printf("************************\n");
 
     scanf("%d", &resposta);
 
@@ -19,40 +22,80 @@ int menu_principal(){
 }
 
 int menu_registros(){
+    limpar_console();
     int resposta;
 
-    printf("\n*****Menu de registros*****\n");
-    printf("1-Registrar participantes\n");
-    printf("2-Registrar atividades\n");
-    printf("3-Registrar inscricoes\n");
-    printf("0-Sair\n");
+    do{
+        printf("\n*****Menu de registros*****\n");
+        printf("1-Registrar participantes\n");
+        printf("2-Registrar atividades\n");
+        printf("3-Registrar inscricoes\n");
+        printf("0-Sair\n");
+        printf("***************************\n");
 
-    //proximas 4 linhas sao apenas para testar a função de registrar participantes
-    scanf("%d", &resposta);
-    ultimo_participante = registrar_participante(ultimo_participante);
+        scanf("%d", &resposta);
 
-    for(int i = 0; i < ultimo_participante; i++){
-        printf("%s numero %d\n", participante[i].nome, participante[i].id_part);
-    }
+        switch(resposta){
+            case 1:
+                ultimo_participante = registrar_participante(ultimo_participante);
+                break;
+            case 2:
+                ultima_atividade = registrar_atividade(ultima_atividade);
+                break;
+            case 3:
+                //registrar_inscricoes()
+                break;
+            default:
+                if(resposta != 0)
+                    printf("Digite o numero correspondente a uma das opçoes do menu\n");
+        }
+    } while(resposta != 0);
 
-    return resposta;
+    return resposta+1;// retorna true para voltar ao menu_principal
 }
 
 int menu_consultas(){
-    int resposta;
+    limpar_console();
+    int resposta, busca, encontrado;
 
-    printf("\n*****Menu de consultas*****\n");
-    printf("1-Consultar participantes\n");
-    printf("2-Consultar atividades\n");
-    printf("3-Consultar inscricoes\n");
-    printf("0-Sair\n");
+    do{
+        printf("\n*****Menu de consultas*****\n");
+        printf("1-Consultar participantes\n");
+        printf("2-Consultar atividades\n");
+        printf("3-Consultar inscricoes\n");
+        printf("0-Sair\n");
+        printf("***************************\n");
 
-    scanf("%d", &resposta);
+        scanf("%d", &resposta);
 
-    return resposta;
+        switch(resposta){
+            case 1:
+                printf("Digite o Id do aluno: ");
+                scanf("%d", &busca);
+                encontrado = consultar_participante(busca, ultimo_participante);
+                if(encontrado == 0)
+                    printf("Aluno nao encontrado!\n");
+                break;
+            case 2:
+                printf("Digite o Id da atividade: ");
+                scanf("%d", &busca);
+                encontrado = consultar_atividade(busca, ultima_atividade);
+                if(encontrado == 0)
+                    printf("Atividade nao encontrada!\n");
+                break;
+            case 3:
+                //consultar_inscricoes()
+                break;
+            default:
+                if(resposta != 0)
+                    printf("Digite o numero correspondente a uma das opçoes do menu\n");
+        }
+    }while(resposta != 0);
+    return resposta+1;// retorna true para voltar ao menu_principal
 }
 
 int menu_estatisticas(){
+    limpar_console();
     int resposta;
 
     printf("\n*****Menu de estatisticas*****\n");
@@ -60,8 +103,9 @@ int menu_estatisticas(){
     printf("2-Percentagem de inscrições por escola\n");
     printf("3-Valor total das inscrições entre duas datas (horizonte temporal) por tipo de atividade\n");
     printf("0-Sair\n");
+    printf("******************************\n");
 
-    scanf("%d", &resposta);
+    scanf("%d", &resposta+1);
 
     return resposta;
 }

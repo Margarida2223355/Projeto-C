@@ -16,9 +16,9 @@ typedef struct {
 } t_participante;
 
 typedef struct {
-    int id_ativ, tipo_atividade, associacao;
-    char designacao[MAX_CARACT], data[MAX_DATA], hora[MAX_HORA], local[MAX_CARACT];
-    float valor_ins;
+    int id_ativ;
+    char designacao[MAX_CARACT], tipo_atividade[MAX_CARACT], associacao[MAX_CARACT], data[MAX_DATA], hora[MAX_HORA], local[MAX_CARACT];
+    float valor_inscricao;
 } Atividade;
 
 typedef struct {
