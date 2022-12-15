@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "dados.c"
 
 int limpar_console(){
     system("cls");
 }
 
-char imprimir_data(Data data){
-    char data_formatada[11];
-    data_formatada = printf("%d/%d/%d", data.dia, data.mes, data.ano);
-    return data_formatada;
+char imprimir_data(t_data data){
+    printf("%d/%d/%d", data.dia, data.mes, data.ano);
 }
+
 int registrar_participante(int ultimo_participante){
     getchar();
         limpar_console();
@@ -30,12 +30,14 @@ int registrar_participante(int ultimo_participante){
 
     return ultimo_participante;
 }
+
 //Podemos incluir as atividades em que o aluno esta matriculado
-int consultar_participante(int id_part, int x){
+int consultar_participante(int id_part, int ultimo_participante){
     limpar_console();
     int encontrado;
-    for(int i = 0; i < x; i++){
-        if(participante[i].id_part == id_part){
+    for(int i = 0; i < ultimo_participante; i++){
+            printf("%d", participante[i].id_part);
+        if(participante[i].id_part == id_part) {
             encontrado = 1;//verdadeiro
             printf("Encontrado\n");
             printf("Id: %d Nome: %s NIF: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif);

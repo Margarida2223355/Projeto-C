@@ -37,3 +37,36 @@
 	<stdlib.h>
 	"dados.c"
 
+1671142588 source:e:\fp\projeto-c\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
+1671141937 e:\fp\projeto-c\dados.c
+	<stdio.h>
+	<stdlib.h>
+
+1671135246 e:\fp\projeto-c\menu.h
+
+1671142106 source:e:\fp\projeto-c\menu.c
+	<stdio.h>
+	<stdlib.h>
+
+1671142526 e:\fp\projeto-c\funcoes.c
+	<stdio.h>
+	<stdlib.h>
+	"dados.c"
+
+1671143108 source:e:\fp\projeto-c\ficheiros.c
+	<stdio.h>
+	<stdlib.h>
+	"funcoes.c"
+
+1671142410 e:\fp\projeto-c\ficheiros.c
+	<stdio.h>
+	<stdlib.h>
+
+1671142106 e:\fp\projeto-c\menu.c
+	<stdio.h>
+	<stdlib.h>
+

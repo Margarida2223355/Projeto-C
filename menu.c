@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "menu.h"
-#include "funcoes.c"
 
 int ultimo_participante = 0;
 int ultima_atividade = 0;
+
 int menu_principal(){
     limpar_console();
     int resposta;

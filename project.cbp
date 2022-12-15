@@ -37,6 +37,10 @@
 			<Option virtualFolder="Other/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="ficheiros.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="Other/" />
+		</Unit>
 		<Unit filename="funcoes.c">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="Other/" />
@@ -48,9 +52,6 @@
 		<Unit filename="menu.c">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="Other/" />
-		</Unit>
-		<Unit filename="menu.h">
-			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions />
 	</Project>
