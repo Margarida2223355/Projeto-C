@@ -6,8 +6,8 @@
 int ultimo_participante = 0;
 int ultima_atividade = 0;
 int menu_principal(){
-    limpar_console();
     int resposta;
+    limpar_console();
 
     printf("\n*****Menu principal*****\n");
     printf("1-Registrar\n");
@@ -22,8 +22,8 @@ int menu_principal(){
 }
 
 int menu_registros(){
-    limpar_console();
     int resposta;
+    limpar_console();
 
     do{
         printf("\n*****Menu de registros*****\n");
@@ -55,8 +55,8 @@ int menu_registros(){
 }
 
 int menu_consultas(){
-    limpar_console();
     int resposta, busca, encontrado;
+    limpar_console();
 
     do{
         printf("\n*****Menu de consultas*****\n");
@@ -95,8 +95,8 @@ int menu_consultas(){
 }
 
 int menu_estatisticas(){
-    limpar_console();
     int resposta;
+    limpar_console();
 
     printf("\n*****Menu de estatisticas*****\n");
     printf("1-Número de atividades realizadas por cada associacao\n");
