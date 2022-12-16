@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#include "dados.c"
-#include "menu.h"
-
 
 int main(){
     int resposta;
@@ -11,6 +8,7 @@ int main(){
     setlocale(LC_ALL, "Portuguese");
 
     do{
+        abrir_ficheiro();
         resposta = menu_principal();
 
         switch(resposta){
