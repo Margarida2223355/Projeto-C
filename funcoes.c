@@ -8,9 +8,12 @@ int limpar_console(){
 }
 
 char imprimir_data(t_data data){
-    printf("%d/%d/%d", data.dia, data.mes, data.ano);
+    printf("%d/%d/%d\n", data.dia, data.mes, data.ano);
 }
 
+void imprimir_hora(t_hora hora){
+    printf("%d:%d\n", hora.hora, hora.minuto);
+}
 int registrar_participante(int ultimo_participante){
     getchar();
         limpar_console();
@@ -33,9 +36,9 @@ int registrar_participante(int ultimo_participante){
 
 //Podemos incluir as atividades em que o aluno esta matriculado
 int consultar_participante(int id_part, int ultimo_participante){
+    int encontrado, i;
     limpar_console();
-    int encontrado;
-    for(int i = 0; i < ultimo_participante; i++){
+    for(i = 0; i < ultimo_participante; i++){
             printf("%d", participante[i].id_part);
         if(participante[i].id_part == id_part) {
             encontrado = 1;//verdadeiro
@@ -69,23 +72,24 @@ int registrar_atividade(int ultima_atividade){
     scanf("%d/%d/%d", &atividade[ultima_atividade].data.dia, &atividade[ultima_atividade].data.mes, &atividade[ultima_atividade].data.ano);
     printf("%d/%d/%d", atividade[ultima_atividade].data.dia, atividade[ultima_atividade].data.mes, atividade[ultima_atividade].data.ano);
     printf("Hora: ");
-    //gets(atividade[ultima_atividade].designacao);
-    ultima_atividade++;
+    scanf("%d:%d", &atividade[ultima_atividade].hora.hora, &atividade[ultima_atividade].hora.minuto);    ultima_atividade++;
 
     return ultima_atividade;
 }
 
 int consultar_atividade(int id_atividade, int ultima_atividade){
 
+    int i, encontrado = 0;
     limpar_console();
-    int encontrado = 0;
 
-    for(int i = 0; i < ultima_atividade; i++){
+    for(i = 0; i < ultima_atividade; i++){
         if(atividade[i].id_ativ == id_atividade){
             printf("Atividade encontrada\n");
             encontrado = 1;
             printf("Id: %d\t Designação: %s\t Local: %s\t Tipo de atividade: %s\n",atividade[i].id_ativ, atividade[i].designacao, atividade[i].local, atividade[i].tipo_atividade);
-            printf("Associação organizadora: %s\t Valor: %.2f\t Data: %s \t Hora: \n", atividade[i].associacao, atividade[i].valor_inscricao, imprimir_data(atividade[ultima_atividade].data), atividade[i].hora);
+            printf("Associação organizadora: %s\t Valor: %.2f\t\n", atividade[i].associacao, atividade[i].valor_inscricao);
+            imprimir_data(atividade[i].data);
+            imprimir_hora(atividade[i].hora);
         }
     }
     return encontrado;
