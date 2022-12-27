@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcoes.c"
 
-int ultimo_participante = 0;
-int ultima_atividade = 0;
+int ultimo_participante = 1;
+int ultima_atividade = 1;
+int ultima_inscricao = 0;
+int x, y;
 
 int menu_principal(){
     int resposta;
-    limpar_console();
+    //limpar_console();
 
     printf("\n*****Menu principal*****\n");
     printf("1-Registrar\n");
@@ -42,7 +45,8 @@ int menu_registros(){
                 ultima_atividade = registrar_atividade(ultima_atividade);
                 break;
             case 3:
-                //registrar_inscricoes()
+                scanf("%d %d", &x, &y);
+                ultima_inscricao = registrar_inscricoes(x,y, ultima_inscricao);
                 break;
             default:
                 if(resposta != 0)
@@ -54,7 +58,7 @@ int menu_registros(){
 }
 
 int menu_consultas(){
-    int resposta, busca, encontrado;
+    int resposta, busca, encontrado, tipo_busca;
     limpar_console();
 
     do{
@@ -69,11 +73,20 @@ int menu_consultas(){
 
         switch(resposta){
             case 1:
-                printf("Digite o Id do aluno: ");
-                scanf("%d", &busca);
-                encontrado = consultar_participante(busca, ultimo_participante);
-                if(encontrado == 0)
-                    printf("Aluno nao encontrado!\n");
+                limpar_console();
+                printf("1- Se deseja buscar individualmente o participante\n2- Se deseja uma lista com todos os participantes\n3- Sair\n");
+                scanf("%d", &tipo_busca);
+                if(tipo_busca == 1){
+                    printf("Digite o Id do participante: ");
+                    scanf("%d", &busca);
+                    encontrado = consultar_participante(busca, ultimo_participante);
+                    if(encontrado == 0)
+                        printf("Participante nao encontrado!\n");
+                }
+                else if(tipo_busca == 2){
+                    busca = -1;
+                    encontrado = consultar_participante(busca, ultimo_participante);
+                }
                 break;
             case 2:
                 printf("Digite o Id da atividade: ");
@@ -83,7 +96,9 @@ int menu_consultas(){
                     printf("Atividade nao encontrada!\n");
                 break;
             case 3:
-                //consultar_inscricoes()
+                printf("Digite o Id da inscrição: ");
+                scanf("%d", &busca);
+                consultar_inscricoes(busca, ultima_inscricao);
                 break;
             default:
                 if(resposta != 0)
@@ -97,14 +112,31 @@ int menu_estatisticas(){
     int resposta;
     limpar_console();
 
-    printf("\n*****Menu de estatisticas*****\n");
-    printf("1-Número de atividades realizadas por cada associacao\n");
-    printf("2-Percentagem de inscrições por escola\n");
-    printf("3-Valor total das inscrições entre duas datas (horizonte temporal) por tipo de atividade\n");
-    printf("0-Sair\n");
-    printf("******************************\n");
+    do{
+        printf("\n*****Menu de estatisticas*****\n");
+        printf("1-Número de atividades realizadas por cada associacao\n");
+        printf("2-Percentagem de inscrições por escola\n");
+        printf("3-Valor total das inscrições entre duas datas (horizonte temporal) por tipo de atividade\n");
+        printf("0-Sair\n");
+        printf("******************************\n");
 
-    scanf("%d", &resposta+1);
+        scanf("%d", &resposta);
 
-    return resposta;
+        switch(resposta){
+            case 1:
+                atividade_por_associacao(ultima_atividade);
+                break;
+            case 2:
+                inscricao_por_escola(ultimo_participante, ultima_inscricao);
+                break;
+            case 3:
+                printf("valor total entre bla bla\n");
+                break;
+            default:
+                if(resposta != 0)
+                    printf("Digite o numero correspondente a uma das opçoes do menu\n");
+        }
+
+    }while(resposta != 0);
+    return resposta+1;// retorna true para voltar ao menu_principal
 }
