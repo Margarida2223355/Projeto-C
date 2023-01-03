@@ -86,49 +86,74 @@ void imprimir_hora(t_data_hora data_hora){
 
 int registrar_participante(int ultimo_participante){
     int resposta_escola, email_valido;
+    char *escola[5];
+    t_participante participante;
+    FILE *participantes;
     getchar();
     limpar_console();
 
-    participante[ultimo_participante].id_part = ultimo_participante;
+    participante.id_part = ultimo_participante;
     printf("Nome:");
-    gets(participante[ultimo_participante].nome);
+    gets(participante.nome);
     printf("Email: ");
-    gets(participante[ultimo_participante].email);
-    email_valido = validar_email(participante[ultimo_participante].email);
+    gets(participante.email);
+    email_valido = validar_email(participante.email);
     while (email_valido == 0){
         printf("email invalido, tente novamente\n Email: ");
-        gets(participante[ultimo_participante].email);
-        email_valido = validar_email(participante[ultimo_participante].email);
+        gets(participante.email);
+        email_valido = validar_email(participante.email);
     };
     fflush(stdin);
     printf("Digite o numero correspontende a Escola\n1-ESTG 2-ESECS 3-ESSLEI 4-ESAD 5-ESTM: ");
     scanf("%d", &resposta_escola);
-    identificador_escola(resposta_escola, ultimo_participante, 0);
+    identificador_escola(resposta_escola, ultimo_participante, 0, &participante);
     printf("NIF: ");
-    scanf("%ld", &participante[ultimo_participante].nif);
+    scanf("%ld", &participante.nif);
     printf("Telefone: ");
-    scanf("%ld", &participante[ultimo_participante].telefone);
+    scanf("%ld", &participante.telefone);
     ultimo_participante++;
+
+    participantes = fopen("participantes.dat", "a+b");
+    if(participantes){
+        fwrite(&participante, sizeof(t_participante), 1, participantes);
+        fclose(participantes);
+    }
+    else
+        printf("ERRO: nao foi possivel abrir o arquivo.\n\n");
 
     return ultimo_participante;
 }
 
-//Podemos incluir as atividades em que o aluno esta matriculado
 int consultar_participante(int busca, int ultimo_participante){
     int encontrado, i;
+    t_participante participante[MAX_P];
+    FILE *participantes;
     limpar_console();
-    for(i = 0; i < ultimo_participante; i++){
-        if(busca == -1){
-            printf("Id: %d Nome: %s NIF: %ld  Escola: %s Email: %s Telefone: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif, participante[i].escola, participante[i].email, participante[i].telefone);
-            encontrado = 1;
-        }
-        else if(participante[i].id_part == busca) {
-            encontrado = 1;//verdadeiro
-            printf("Encontrado\n");
-            printf("Id: %d Nome: %s NIF: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif);
-            printf("Escola: %s Email: %s Telefone: %ld\n", participante[i].escola, participante[i].email, participante[i].telefone);
-        }
+
+    participantes = fopen("participantes.dat","rb");
+    if(participantes){
+        fread(participante, sizeof(t_participante), 10, participantes);
+        fclose(participantes);
     }
+    else{
+        printf("ERRO: nao foi possivel abrir o arquivo.\n\n");
+        }
+    for(int i = 0; i <10; i++){
+        printf("Id: %d Nome: %s NIF: %ld  Escola: %s Email: %s Telefone: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif, participante[i].escola, participante[i].email, participante[i].telefone);
+    }
+
+//    for(i = 0; i < ultimo_participante; i++){
+//        if(busca == -1){
+//            printf("Id: %d Nome: %s NIF: %ld  Escola: %s Email: %s Telefone: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif, participante[i].escola, participante[i].email, participante[i].telefone);
+//            encontrado = 1;
+//        }
+//        else if(participante[i].id_part == busca) {
+//            encontrado = 1;//verdadeiro
+//            printf("Encontrado\n");
+//            printf("Id: %d Nome: %s NIF: %ld\n",participante[i].id_part, participante[i].nome, participante[i].nif);
+//            printf("Escola: %s Email: %s Telefone: %ld\n", participante[i].escola, participante[i].email, participante[i].telefone);
+//        }
+//    }
     return encontrado;
 }
 
@@ -149,7 +174,7 @@ int registrar_atividade(int ultima_atividade){
     fflush(stdin);
     printf("Digite o numero correspontende a associação de estudantes organizadora\n1- AE-ESTG 2- AE-ESECS 3- AE-ESSLEI 4- AE-ESAD 5- AE-ESTM: ");
     scanf("%d", &resposta_escola);
-    identificador_escola(resposta_escola, ultima_atividade, 1);
+    //identificador_escola(resposta_escola, ultima_atividade, 1);
     printf("Valor da inscrição: ");
     scanf("%f", &atividade[ultima_atividade].valor_inscricao);
 
@@ -252,24 +277,23 @@ void atividade_por_associacao(int ultima_atividade){
     printf("AE-ESTG: %d\nAE-ESECS: %d\nAE-ESSLEI: %d\nAE-ESAD: %d\nAE-ESTM: %d\n", ESTG, ESECS, ESSLEI, ESAD, ESTM);
 }
 
-void identificador_escola(int resposta, int final_lista, int associacao_estudante){
-
+void identificador_escola(int resposta, int final_lista, int associacao_estudante, t_participante participante){
     if(associacao_estudante == 0){
         switch(resposta){
             case 1:
-                strcpy(participante[final_lista].escola, "ESTG");
+                strcpy(participante.escola, "ESTG");
                 break;
             case 2:
-                strcpy(participante[final_lista].escola, "ESECS");
+                strcpy(participante.escola, "ESECS");
                 break;
             case 3:
-                strcpy(participante[final_lista].escola, "ESSLEI");
+                strcpy(participante.escola, "ESSLEI");
                 break;
             case 4:
-                strcpy(participante[final_lista].escola, "ESAD");
+                strcpy(participante.escola, "ESAD");
                 break;
             case 5:
-                strcpy(participante[final_lista].escola, "ESTM");
+                strcpy(participante.escola, "ESTM");
                 break;
         }
     }

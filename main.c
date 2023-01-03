@@ -8,13 +8,6 @@ int main(){
 
     setlocale(LC_ALL, "Portuguese");
 
-    //participante teste
-    participante[0].id_part = 0;
-    strcpy(participante[0].nome , "Gabriel");
-    strcpy(participante[0].email, "gabri@fassa");
-    participante[0].nif = 123231132;
-    participante[0].telefone = 26241557;
-    strcpy(participante[0].escola, "ESTG");
     //atividade teste
     atividade[0].id_ativ = 0;
     strcpy(atividade[0].designacao, "briga");

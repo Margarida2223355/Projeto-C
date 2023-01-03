@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "funcoes.c"
 
-int ultimo_participante = 1;
+int ultimo_participante = 0;
 int ultima_atividade = 1;
 int ultima_inscricao = 0;
 int x, y;
@@ -24,8 +24,24 @@ int menu_principal(){
 }
 
 int menu_registros(){
-    int resposta;
+    int resposta,i;
+    t_participante participante[MAX_P];
+    FILE *participantes;
+    size_t fSize;
+
     limpar_console();
+
+// preciso abrir o arquivo passar o numero de participantes para ultimo_participante
+
+    participantes = fopen("participantes.dat", "rb");
+
+    fseek(participantes, 0L, SEEK_END);
+    fSize = ftell(participantes);
+    ultimo_participante = fSize/sizeof(t_participante);
+    fseek(participantes, 0L, SEEK_SET);
+    printf("ultimo participante = %d", ultimo_participante);
+
+    fclose(participantes);
 
     do{
         printf("\n*****Menu de registros*****\n");

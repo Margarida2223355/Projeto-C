@@ -9,17 +9,18 @@
 	<stdio.h>
 	<stdlib.h>
 
-1672158011 source:c:\users\gabri\onedrive\documentos\github\projeto-c\menu.c
+1672764189 source:c:\users\gabri\onedrive\documentos\github\projeto-c\menu.c
 	<stdio.h>
 	<stdlib.h>
+	"funcoes.c"
 
-1672163091 source:c:\users\gabri\onedrive\documentos\github\projeto-c\main.c
+1672257887 source:c:\users\gabri\onedrive\documentos\github\projeto-c\main.c
 	<stdio.h>
 	<stdlib.h>
 	<locale.h>
 	"dados.c"
 
-1671991809 c:\users\gabri\onedrive\documentos\github\projeto-c\dados.c
+1672164863 c:\users\gabri\onedrive\documentos\github\projeto-c\dados.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -30,7 +31,7 @@
 
 1670792254 c:\users\gabri\onedrive\documentos\github\projeto-c\menu.h
 
-1672082960 c:\users\gabri\onedrive\documentos\github\projeto-c\funcoes.c
+1672764381 c:\users\gabri\onedrive\documentos\github\projeto-c\funcoes.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -69,7 +70,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1672163065 source:c:\users\gabri\onedrive\documentos\github\projeto-c\ficheiros.c
+1672164863 source:c:\users\gabri\onedrive\documentos\github\projeto-c\ficheiros.c
 	<stdio.h>
 	<stdlib.h>
 
